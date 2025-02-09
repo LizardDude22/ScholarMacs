@@ -11,7 +11,18 @@ This configuration file uses a variety of packages including orderless, vertico,
 
 ## How do I install it?
 
-Just copy and paste sections of this file (or even the entire file!) into your config file :D Remember to replace all PLACEHOLDER values (e.g. for your .bib and .csl files). Additionally, you may need to adjust the fonts. Currently, Iosevka is used for non-variable pitch fonts. If you don't have the Iosevka font installed, it may cause an error. You can either install the Iosevka font or change it to another font of your choice. The same applies to Open Sans, though it's more likely to be pre-installed on your system. Also, check that the MELPA archive is configured.
+Just copy and paste sections of this file (or even the entire file!) into your config file :D Remember to replace all PLACEHOLDER values (e.g. for your .bib and .csl files). Additionally, you may need to adjust the fonts. Currently, Iosevka is used for non-variable pitch fonts. If you don't have the Iosevka font installed, it may cause an error. You can either install the Iosevka font or change it to another font of your choice. The same applies to Open Sans, though it's more likely to be pre-installed on your system.
+
+Also, check that the MELPA archive is configured; you can do that by adding the following to the top of your config file:
+
+'''
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+''' 
 
 ## Is this it dude? Or are you planning on adding more?
 
@@ -32,4 +43,3 @@ You can find more about these packages on their respective GitHub pages.
 ### Disclaimer
 
 You should always audit third-party configs and packages when using Emacs. I’ve done my best to audit the packages used in this config, and I’ve tried to limit the config to the GNU ELPA archive as much as possible. However, some packages are taken from MELPA (currently only Ebib), and as such, they are subject to less oversight.
-
