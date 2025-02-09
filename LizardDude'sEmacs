@@ -1,5 +1,12 @@
 ;; Packages
 
+;;; ebib
+
+(use-package ebib
+    :ensure t
+    :config (setq ebib-preload-bib-files "PLACEHOLDER")
+    :bind (global-set-key (kbd "C-c e") 'ebib))
+
 ;;; vertico
 
 (use-package vertico
