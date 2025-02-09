@@ -43,13 +43,20 @@
 ;;; Disable the startup message and set the window name
 
 (setq inhibit-startup-message t)
-(setq-default frame-title-format '("Harry's Emacs  |  File: %f"))
+(setq-default frame-title-format '("Emacs  |  File: %f"))
 
 ;;; Get rid of the menu, tool and scroll bars
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+
+
+;;; Make background transparent—I left this off by default, however, with a nice background image this can look amazing on minimal desktop enviroments and window managers (e.g. Gnome or Sway)
+
+;(set-frame-parameter nil 'alpha-background 70)
+
+;(add-to-list 'default-frame-alist '(alpha-background . 70))
 
 ;;; Set up recent file and placeholder functionality
 
@@ -58,6 +65,11 @@
 (global-set-key (kbd "C-x ,") 'recentf-open-files)
 
 (save-place-mode 1)
+
+;;; Line spacing
+
+(setq-default line-spacing 2)
+
 
 ;;; Make scrolling bearable
 
@@ -200,10 +212,12 @@
 
 ;;; Org editing and visual tweaks
 
-(setq org-toggle-pretty-entities t)
-(setopt modus-themes-org-blocks 'gray-background)
-(setq org-support-shift-select t)
-(setq org-hide-emphasis-markers t) ;; Hide Org-mode markdown symbols
+(setq-default org-toggle-pretty-entities t
+	       modus-themes-org-blocks 'gray-background
+	       org-support-shift-select t
+	       org-hide-emphasis-markers t
+	       org-startup-with-inline-images t
+               org-image-actual-width '(300))
 
 ;;;; Activate hl-line mode in Dired and Org Agenda only
 (add-hook 'dired-mode-hook 'hl-line-mode)
