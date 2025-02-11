@@ -6,11 +6,11 @@
   :ensure t
   :config
   (setopt 
-   ebib-preload-bib-files '("~/Documents/Bibliography/my.bib")
+   ebib-preload-bib-files '("PLACEHOLDER")
    ebib-file-associations 
-   '(("pdf" . "evince")
+   '(("pdf" . "evince") ;; Or your desired PDF viewer
      ("xopp" . "xournalpp"))
-   ebib-file-search-dirs '("~/Documents/Bibliography/PDFs")
+   ebib-file-search-dirs '("PLACEHOLDER")
    ebib-bibtex-dialect 'biblatex)
   :bind
   (("C-c e" . ebib)))
