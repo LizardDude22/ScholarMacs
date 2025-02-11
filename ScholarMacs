@@ -3,9 +3,17 @@
 ;;; ebib
 
 (use-package ebib
-    :ensure t
-    :config (setq ebib-preload-bib-files "PLACEHOLDER")
-    :bind (global-set-key (kbd "C-c e") 'ebib))
+  :ensure t
+  :config
+  (setopt 
+   ebib-preload-bib-files '("~/Documents/Bibliography/my.bib")
+   ebib-file-associations 
+   '(("pdf" . "evince")
+     ("xopp" . "xournalpp"))
+   ebib-file-search-dirs '("~/Documents/Bibliography/PDFs")
+   ebib-bibtex-dialect 'biblatex)
+  :bind
+  (("C-c e" . ebib)))
 
 ;;; vertico
 
