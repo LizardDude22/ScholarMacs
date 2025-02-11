@@ -7,7 +7,7 @@ Copyright © 1997 Markus Gerwinski
 
 ## What does the config do?
 
-This configuration file uses a variety of packages including orderless, vertico, marginalia, and Ebib (soon!) with more packages to come in order to set up a powerful, integrated environment for students and academics. Also included are a slew of QOL and visual tweaks to Emacs' built-in functionality and packages (including org-mode and the modus themes). Emacs can replace the feature sets of many proprietary applications, but it can look good while doing it! Try it out!
+This configuration file uses a variety of packages including orderless, vertico, marginalia, and Ebib with more packages to come in order to set up a powerful, integrated environment for students and academics. Also included are a slew of QOL and visual tweaks to Emacs' built-in functionality and packages (including org-mode and the modus themes). Emacs can replace the feature sets of many proprietary applications, but it can look good while doing it! Try it out!
 
 ## How do I install it?
 
