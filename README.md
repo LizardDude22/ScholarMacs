@@ -15,14 +15,14 @@ Just copy and paste sections of this file (or even the entire file!) into your c
 
 Also, check that the MELPA archive is configured; you can do that by adding the following to the top of your config file:
 
-'''
+```
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
-''' 
+```
 
 ## Is this it dude? Or are you planning on adding more?
 
