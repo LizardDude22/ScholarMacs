@@ -324,7 +324,7 @@ This block defines a list of UTF emojis to be associated with various major mode
                ''/''/''\n
                  '/'/'\n
                   `;"))
-	    (let ((welcome-message "\nWelcome to Harry's Emacs! Press any key to clear this scratch buffer. Credit for the art goes to Vijay Kumar Bagavath Singh <3"))
+	    (let ((welcome-message "\nWelcome to ScholarMacs! Press any key to clear this scratch buffer. Credit for the art goes to Vijay Kumar Bagavath Singh <3"))
 	      (with-current-buffer "*scratch*"
 		(erase-buffer)
 		(insert (center-text ascii-art))  ; Centered ASCII art
