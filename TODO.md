@@ -5,11 +5,11 @@
 - [] Corfu
 - [] Beframe
 - [] Fontaine
-- [] Beacon
 - [] Lin
 - [] org-present
 - [] org-drill
-- [] consult
+- [x] consult
+- [x] Embark
 
 ## Useful features
 
@@ -17,4 +17,4 @@
 
 ## Code refactoring
 
-- [] Convert the file to a .org file for tangling with user init files
+- [x] Convert the file to a .org file for tangling with user init files
