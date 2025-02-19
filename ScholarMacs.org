@@ -1,0 +1,552 @@
+#+TITLE: ScholarMacs
+#+AUTHOR: LizardDude22
+#+LANGUAGE: en 
+#+PROPERTY: headger-args :tangle
+
+* Introduction
+
+Welcome to my Emacs config. This is literate config written in Org-mode using source code blocks tangled with a local config.el file which itself is called by .gnu-emacs-custom. To learn more about literate programming in Org-mode, or indeed literate programming in general, visit https://orgmode.org/manual/Working-with-Source-Code.html or read /Literate Programming/ by Donald Knuth.
+
+** Packages
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-packages
+
+  ;;; ebib
+
+  (use-package ebib
+    :ensure t
+    :config
+    (setopt 
+     ebib-preload-bib-files '("PLACEHOLDER")
+     ebib-file-associations 
+     '(("pdf" . "evince")
+       ("xopp" . "xournalpp"))
+     ebib-file-search-dirs '("PLACEHOLDER")
+     ebib-bibtex-dialect 'biblatex
+     ebib-notes-storage 'one-file-per-note
+     ebib-notes-directory "PLACEHOLDER"
+     ebib-reading-list-file "PLACEHOLDER"
+     ebib-reading-list-template
+     "** %M %T :ReadingList:\n:PROPERTIES:\n:KEY: %K\n:END:\n"
+     ebib-autogenerate-keys t)
+
+    :bind
+    ("C-c e" . ebib))
+
+  ;;; vertico
+
+  (use-package vertico
+    :ensure t
+    :pin gnu
+    :custom
+    (vertico-cycle t)
+    :init
+    (vertico-mode))  ; Enable Vertico at startup
+
+  ;;; orderless
+
+  (use-package orderless
+    :ensure t
+    :pin gnu
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))  ;; Correct wrapping of the list
+
+  ;;; marginalia
+
+  (use-package marginalia
+    :ensure t
+    :pin gnu
+    :custom
+    (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+
+    :init
+    (marginalia-mode))
+
+#+END_SRC 
+
+#+RESULTS:
+
+
+This block makes sure the following packages are installed and configured:
+
+*** Ebib
+
+**** What does this package do?
+
+This is an Emacs-based bibliography manager for .bib files written by Joost Kremmers—who has written an extensive accompanying manual. It support both the *BibTeX* and *BibLaTeX* dialects, and is well integrated with *org-mode*.
+
+**** Custom settings
+
+The /setopt/ function sets the following settings:
+
+- preloads /PLACEHOLDER/ as a bibliographic database
+- sets the following file associations:
+  * .pdf : /Evince/
+  * .xopp : /Xournal++/
+- sets  /PLACEHOLDER/ as the associated file directory
+- sets the dialect to *BibLaTeX*
+- sets note storage to /one-file-per-note/
+- sets the note directory to /PLACEHOLDER/
+- sets the reading list file to /PLACEHOLDER/
+- sets a custom reading list template
+- enables Ebib's /autogenerate-keys/ function for both *BibTeX* and *BibLaTeX* entries
+
+*** Vertico
+
+**** What does this package do?
+
+*Vertico,* or VERTical Interactive COmpletion, is a completion UI which replaces Emacs' builtin completion framework with a more minimalist design based on Emacs' built-in functions. *Vertico* is highly modular and can be extended with a variety of complementary packages such as *Orderless* and *Marginalia*.
+
+*** Orderless
+
+**** What does this package do?
+
+*Orderless* is a completion style which matches search candidates based on fuzzy search of space-separated components
+
+*** Marginalia
+
+**** What does this package do?
+
+*Marginalia* provides brief marks of annotations at the margin of the minibuffer for completion candidates in order to convey more information about files and functions.
+
+
+** GNUs
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-GNUS
+    (setq gnus-select-method '(nnnil ""))  ; to disable NNTP and use no server
+#+END_SRC
+
+This block simply sets up GNUS to use no server: ideal for RSS. RSS can best be configured and filed within GNUs itself
+
+** General Tweaks
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-general
+  ;;; Startup 
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (which-function-mode 1)
+
+  (setopt frame-title-format "🏺 %b - Λογικὴ Γραμματεύς %M 🏺")
+
+  ;;; Make background transparent
+
+  ;(set-frame-parameter nil 'alpha-background 70)
+
+  ;(add-to-list 'default-frame-alist '(alpha-background . 70))
+
+  ;;; Toggle fullscreen
+
+  (defun toggle-fullscreen ()
+    "Toggle full screen and enable/disable battery display mode."
+    (interactive)
+    (set-frame-parameter
+     nil 'fullscreen
+     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))) 
+  (global-set-key (kbd "C-x <up>") 'toggle-fullscreen)
+
+
+  ;;; Set up recent file and placeholder functionality
+
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 10)  ; Set the maximum number of items to remember
+  (global-set-key (kbd "C-x ,") 'recentf-open-files)
+
+  (save-place-mode 1)
+
+  ;;; Line spacing
+
+  (setq-default line-spacing 2)
+
+  ;;; Make scrolling bearable
+
+  (setq pixel-scroll-precision-mode t)
+
+  ;;; Make text nicer to read by adding margins
+
+  (setq-default left-margin-width 5 right-margin-width 5) ; Define new widths.
+  (global-visual-line-mode 1)
+
+#+END_SRC
+
+
+
+This block does a number of things.
+
+- It disables the:
+  * menu-bar
+  * tool-bar
+  * scroll-bar
+- Adds an optional transparent background (commented out for now)
+- Sets up a toggleable fullscreen
+- Enables /recentf/ mode and binds it to /C-x ,/
+- Enables /save-place-mode/
+- Sets line spacing to 2
+- Enables /pixel-scroll-precision-mode/ for smoother scrolling
+- Adds margins
+
+** Mode-line
+
+*** Mode-line Format
+
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-mode-line-format
+
+  (setq-default mode-line-format
+		'("%e"
+
+
+		  (:eval
+		   (let ((mode-line-string  ; Define the mode-line-string here
+				(concat
+				 
+				 "💾: "
+				 my-mode-line-buffer-name
+				 " "
+				 my-mode-line-file-position
+				 " "
+				 my-mode-line-file-delta-status
+				 " | "   ; Separator between file position and lambda symbol       
+				 my-mode-line-lambda
+				 my-mode-line-mode
+				 (or (cdr (assoc major-mode my-major-mode-line-mode-indicators)) "")
+				 " | "
+				 (when which-function-mode
+				   (let ((function (which-function)))
+				     (if function
+					 (concat function)
+				       "")))
+				 (when (not which-function-mode)
+				   "which-function mode is disabled 👎🏻 | ")
+				 )))
+
+					 (let* ((window-width (window-width))
+				(string-length (length mode-line-string))
+				(total-padding (max 0 (- window-width string-length)))
+				(left-padding (/ total-padding 2))  ; Integer division of total padding for left side
+				(right-padding (- total-padding left-padding)))  ; The rest goes to the right
+
+			   (concat
+			    ;; Adjust the left padding slightly if there's an odd difference in padding
+			    (make-string left-padding ?\s)
+			    mode-line-string
+			    (make-string right-padding ?\s)))))))
+
+
+
+#+END_SRC
+
+The block defines the mode-line format by calling the variable defined in the subsequent blocks. It then centres the mode-line.
+
+*** Indicators
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-mode-line-indicators
+
+  (defvar my-mode-line-buffer-name (propertize "%b" 'face 'bold)
+    "The format for the buffer name in the mode-line.")
+
+  (defvar my-mode-line-file-position (propertize "(%o)" 'face 'shadow)
+    "The format for the file position in the mode-line.")
+
+  (defvar my-mode-line-file-delta-status (propertize "Δ: %&" 'face 'shadow))
+
+  (defvar my-mode-line-lambda (propertize "λ " 'face 'shadow)
+    "The format for the lambda symbol in the mode-line.")
+
+  (defvar my-mode-line-mode (propertize "%m" 'face 'bold)
+    "The format for the major mode in the mode-line.")
+
+  (defvar my-mode-line-global-string (propertize " %M" 'face 'bold)
+    "The format for the glboal status in the mode-line.")
+
+#+END_SRC
+
+
+This block defines the basic variables to be used as indicators within the mode-line.
+
+*** Major Mode Icons  
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-mode-line-major-mode-icons
+
+  (defvar my-major-mode-line-mode-indicators
+    '((org-mode . " 📚")
+      (org-agenda-mode . " 🗓️")
+      (bibtex-mode . " 📜")
+      (lisp-mode . " 🍯")
+      (python-mode . " 🐍")
+      (java-mode . " ☕")
+      (perl-mode . " 🐫")
+      (c-mode . " 👴🏼")
+      (c++-mode . " 👴🏼"))
+    "A list of mode-specific indicators for the mode line.")
+
+  #+END_SRC
+
+
+This block defines a list of UTF emojis to be associated with various major mode
+
+** Custom Splashscreen
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-splashscreen
+
+	(defun center-text (text)
+	  "Center TEXT within the entire Emacs window width."
+	  (let* ((window-width (window-body-width))          ; Get the width of the window
+		 (ascii-width (apply 'max (mapcar 'length (split-string text "\n")))))  ; Max length of any line in the ASCII art
+	    (if (> window-width ascii-width)
+		(let ((padding (max 0 (/ (- window-width ascii-width) 2))))  ; Calculate padding
+		  (mapconcat (lambda (line)
+			       (concat (make-string padding ?\ ) line))  ; Add padding to each line
+			     (split-string text "\n" t)
+			     "\n"))
+	      text)))  ; If the text is wider than the window, just return it unmodified
+
+	(defun my-ascii-art ()
+	  "Insert custom ASCII art into the *scratch* buffer."
+	  (interactive)
+	  (let ((ascii-art "
+    _-`````-,            ,- '- .\n
+  .'   .- - |          | - -.  `.\n
+ /.'  /                     `.   \n
+:/   :      _...   ..._      ``   :\n
+::   :     /._ .`:'_.._\\.    ||   :\n
+::    `._ ./  ,`  :    \\ . _.''   .\n
+`:.      /   |  -.  \\-. \\\\_      /\n
+  \:._ _/  .'   .@)  \\@) ` `\\ ,.'\n
+     _/,--'       .- .\\,-.`--`.\n
+       ,'/''     (( \\ `  )    
+        /'/'  \\    `-'  (      
+         '/''  `._,-----'\n
+          ''/'    .,---'\n
+           ''/'      ;:\n
+             ''/''  ''/\n
+               ''/''/''\n
+                 '/'/'\n
+                  `;"))
+	    (let ((welcome-message "\nWelcome to Harry's Emacs! Press any key to clear this scratch buffer. Credit for the art goes to Vijay Kumar Bagavath Singh <3"))
+	      (with-current-buffer "*scratch*"
+		(erase-buffer)
+		(insert (center-text ascii-art))  ; Centered ASCII art
+		(insert (center-text welcome-message))  ; Center the welcome message
+		(goto-char (point-min))))))
+
+	(add-hook 'emacs-startup-hook 'my-ascii-art)
+
+	;; Automatically clear *scratch* buffer when you start typing
+	(defvar my-scratch-cleared nil "Flag to check if *scratch* has been cleared.")
+
+	(defun clear-scratch-buffer-on-input ()
+	  "Clear the *scratch* buffer when you start typing."
+	  (when (and (eq (current-buffer) (get-buffer "*scratch*"))
+		     (not my-scratch-cleared)
+		     (not (= (point) (point-min)))) ; Only clear if you are not at the beginning (start typing)
+	    (erase-buffer)
+	    (setq my-scratch-cleared t)))  ; Flag to prevent multiple clears
+
+	(add-hook 'post-command-hook 'clear-scratch-buffer-on-input)
+
+	;; Keep Emacs looking as usual (do not disable UI elements)
+	(setq initial-buffer-choice t)
+
+#+END_SRC 
+
+Here the default scratch buffer is replaced with a splash screen featuring a tasteful ASCII art GNU—credited to Vijay Kumar Bagavath Singh—and a welcome message. Both the art and the message are set to clear upon user input.
+
+** Org-mode
+
+*** Tweaks
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-org-tweaks
+
+
+  (require 'org)  ; Ensures org-mode is loaded
+  (require 'oc-csl)
+
+
+  ;;; Org specific files
+
+  (setopt org-agenda-files '("PLACEHOLDER")
+
+
+  ;;; Org bibliographic and exporter settings
+
+  (setq org-cite-global-bibliography '("PLACEHOLDER")) ; Set your .bib file here
+
+  (setq org-cite-csl-styles-dir "PLACEHOLDER") ; Set the CSL styles directory (path to where your .csl files are located)
+
+  (setq org-cite-csl-style "PLACEHOLDER") ; Set the CSL style to the specific Harvard style you downloaded
+
+  (setq TeX-command-default "LaTeX")
+  (setq TeX-clean-confirm nil)  ; Automatically clean without confirmation
+  (setq TeX-clean-intermediate-files t)  ; Automatically delete intermediate files
+
+
+  ;;; Org editing and visual tweaks
+
+  (setq-default org-toggle-pretty-entities t
+		modus-themes-org-blocks 'gray-background
+		org-support-shift-select t
+		org-hide-emphasis-markers t
+		org-startup-with-inline-images t
+		org-image-actual-width '(300)
+		) 
+  (setopt org-image-align 'centre)  ; Or 'left or 'right
+
+  ;;; Agenda settings	
+
+  (global-set-key (kbd "C-c a") 'org-agenda) ; 'C-c -' Opens org-agenda
+  (global-set-key (kbd "C-c t") (lambda ()           ; 'C-c 0' opens today's agenda
+				  (interactive)
+				  (org-agenda nil "a")))
+
+  ;;; Activate hl-line mode in Dired and Org Agenda only
+
+  (add-hook 'dired-mode-hook 'hl-line-mode)
+  (add-hook 'org-agenda-mode-hook 'hl-line-mode)
+
+
+  (font-lock-add-keywords 'org-mode
+			  '(("^ *\\([-]\\) "
+			     (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))) ; Use only bullet point symbols for lists
+
+
+  ;;; Spell checking
+
+  (defun my/org-setup-flyspell-and-dictionary ()
+    "Enable flyspell and set dictionary to British English in org-mode."
+    (flyspell-mode 1)
+    (setq ispell-dictionary "british"))
+
+  (add-hook 'org-mode-hook 'my/org-setup-flyspell-and-dictionary)
+
+  ;;; Ensure soft wrapping in org-mode
+
+  (add-hook 'org-mode-hook (lambda () 
+			     (auto-fill-mode -1)  ; Disable auto-fill
+			     (setq fill-column most-positive-fixnum)  ; Disable hard wrapping
+			     (visual-line-mode 1)))  ; Enable soft wrapping
+
+#+END_SRC
+
+*** Capture Templates
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts
+
+  (global-set-key (kbd "C-c 9") 'org-capture) ; 'C-c 0' Opens org-capture
+
+  (setq org-capture-templates
+	'(("t" "Todo" entry (file+headline "PLACEHOLDER" "Tasks")
+	   "* TODO %?\n  %i\nCreated: %T")))
+
+#+END_SRC
+
+*** Macros
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-org-macros
+
+  (defun insert-essay-plan-table ()
+    "Inserts a 6x2 table for an essay plan with columns 'Idea' and 'Source', including the separator and rows."
+    (interactive)
+    (insert "| Idea | Source(s) (If applicable) |\n")  ; Insert the header row
+    (insert "|------+---------------------------|\n")  ; Insert the separator row
+    (dotimes (_ 4)  ; Create 4 additional empty rows (for a total of 6 rows)
+      (insert "|      |                        |\n"))
+    (org-table-align))  ; Align the table
+
+
+  (global-set-key (kbd "C-c o e") 'insert-essay-plan-table)
+
+
+  (defun insert-elisp-config-block()
+    "Inserts an Org source block with 'emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts parameters'"
+    (interactive)
+    (insert "#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts\n#+END_SRC"))
+
+  (defun insert-lisp-block()
+    "Inserts an Org source block with 'lisp'"
+    (interactive)
+    (insert "#+BEGIN_SRC lisp\n#+END_SRC"))
+
+
+#+END_SRC
+
+
+**** Macro Table
+
+| Name                      | Function                                                                                                    | Usage   |
+|---------------------------+-------------------------------------------------------------------------------------------------------------+---------|
+| insert-essay-plan-table   | "Inserts a 6x2 table for an essay plan with columns 'Idea' and 'Source', including the separator and rows." | C-c o e |
+| insert-elisp-config-block | "Inserts an Org source block with 'emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts parameters"                  | N/A     |
+| insert-lisp-block         | "Inserts an Org source block with 'lisp'"                                                                   | N/A     |
+|                           |                                                                                                             |         |
+
+
+*** Org Babel Settings
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-org-babel-settings
+
+    (org-babel-do-load-languages
+     'org-beabel-load-languages
+     '((lisp . t)
+       (gnuplot . t)))
+
+#+END_SRC
+
+#+RESULTS:
+
+
+** Font settings
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts
+
+  (set-face-attribute 'default nil :family "Dejavu Sans Mono" :height 108 :weight 'normal) ; Main typeface (for regular text)
+  (set-face-attribute 'variable-pitch nil :family "Dejavu Sans" :height 1.18 :weight 'normal) ; Proportionately spaced typeface (for non-monospaced text)
+  (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 100 :weight 'normal) ; Monospaced typeface (for fixed-pitch text, like code blocks)
+  (set-face-attribute 'fixed-pitch-serif nil :family "DejaVu Sans Mono" :height 100 :weight 'normal)
+
+  (add-hook 'org-mode-hook #'variable-pitch-mode)
+
+#+END_SRC
+
+** Modus Theme tweaks 
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-modus-settings
+
+  ;;; Simple Modus tweaks
+
+  (setq modus-themes-fringes nil) ; Make fringes transparent
+  (bind-key "<f5>" 'modus-themes-toggle) ; Day and Night mode for Emacs
+  (setq modus-themes-mode-line '(accented borderless))
+  (setopt modus-themes-mixed-fonts t)
+
+  ;;; Headings for Org
+
+  (setq modus-themes-headings
+	'((1 . (height 1.4))
+	  (2 . (height 1.3))
+	  (3. (height 1.2))
+	  (4. (height 1.1))
+	  (t . (height 1))))
+
+  ;;; Load Modus
+
+  (load-theme 'modus-operandi t)
+
+#+END_SRC
+
+
+** Dired settings
+
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts
+
+  ;; Hide file ownership/permissions by default
+  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+
+  ;; Hide dotfiles 
+  (setq dired-listing-switches "-l")  ;; Use -l only, excluding -a
+
+
+#+END_SRC
+
+

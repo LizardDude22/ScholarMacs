@@ -11,7 +11,7 @@ This configuration file uses a variety of packages including orderless, vertico,
 
 ## How do I install it?
 
-Just copy and paste sections of this file (or even the entire file!) into your config file :D Remember to replace all PLACEHOLDER values (e.g. for your .bib and .csl files). Additionally, you may need to adjust the fonts. Currently, Iosevka is used for non-variable pitch fonts. If you don't have the Iosevka font installed, it may cause an error. You can either install the Iosevka font or change it to another font of your choice. The same applies to Open Sans, though it's more likely to be pre-installed on your system.
+Just copy and paste sections of this file (or even the entire file!) into your config file :D Remember to replace all PLACEHOLDER values (e.g. for your .bib and .csl files). Additionally, you may wish to adjust the fonts to your liking. Open Sans and DejaVu Sans Serif fonts are used—check that they're installed on your system.
 
 Also, check that the MELPA archive is configured; you can do that by adding the following to the top of your config file:
 

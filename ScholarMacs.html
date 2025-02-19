@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-02-19 Wed 16:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ScholarMacs</title>
+<meta name="author" content="LizardDude22" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">ScholarMacs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org877f714">1. Introduction</a>
+<ul>
+<li><a href="#orgec6a00b">1.1. Packages</a>
+<ul>
+<li><a href="#org5dc0576">1.1.1. Ebib</a></li>
+<li><a href="#org184f3b6">1.1.2. Vertico</a></li>
+<li><a href="#org590e510">1.1.3. Orderless</a></li>
+<li><a href="#org06b86e4">1.1.4. Marginalia</a></li>
+</ul>
+</li>
+<li><a href="#orgd9719de">1.2. GNUs</a></li>
+<li><a href="#org92ac830">1.3. General Tweaks</a></li>
+<li><a href="#org2e6a928">1.4. Mode-line</a>
+<ul>
+<li><a href="#orgf470e40">1.4.1. Mode-line Format</a></li>
+<li><a href="#org21cd078">1.4.2. Indicators</a></li>
+<li><a href="#org68d4d4f">1.4.3. Major Mode Icons</a></li>
+</ul>
+</li>
+<li><a href="#orgaec715e">1.5. Custom Splashscreen</a></li>
+<li><a href="#orgac64c6d">1.6. Org-mode</a>
+<ul>
+<li><a href="#orgd26dff4">1.6.1. Tweaks</a></li>
+<li><a href="#org21e8ad3">1.6.2. Capture Templates</a></li>
+<li><a href="#orga4dc0d9">1.6.3. Macros</a></li>
+<li><a href="#orgd3d1cef">1.6.4. Org Babel Settings</a></li>
+</ul>
+</li>
+<li><a href="#org4600d1d">1.7. Font settings</a></li>
+<li><a href="#org26492db">1.8. Modus Theme tweaks</a></li>
+<li><a href="#org7be8150">1.9. Dired settings</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org877f714" class="outline-2">
+<h2 id="org877f714"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Welcome to my Emacs config. This is literate config written in Org-mode using source code blocks tangled with a local config.el file which itself is called by .gnu-emacs-custom. To learn more about literate programming in Org-mode, or indeed literate programming in general, visit <a href="https://orgmode.org/manual/Working-with-Source-Code.html">https://orgmode.org/manual/Working-with-Source-Code.html</a> or read <i>Literate Programming</i> by Donald Knuth.
+</p>
+</div>
+
+<div id="outline-container-orgec6a00b" class="outline-3">
+<h3 id="orgec6a00b"><span class="section-number-3">1.1.</span> Packages</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+;;; ebib
+
+(use-package ebib
+  :ensure t
+  :config
+  (setopt 
+   ebib-preload-bib-files '("PLACEHOLDER")
+   ebib-file-associations 
+   '(("pdf" . "evince")
+     ("xopp" . "xournalpp"))
+   ebib-file-search-dirs '("PLACEHOLDER")
+   ebib-bibtex-dialect 'biblatex
+   ebib-notes-storage 'one-file-per-note
+   ebib-notes-directory "PLACEHOLDER"
+   ebib-reading-list-file "PLACEHOLDER"
+   ebib-reading-list-template
+   "** %M %T :ReadingList:\n:PROPERTIES:\n:KEY: %K\n:END:\n"
+   ebib-autogenerate-keys t)
+
+  :bind
+  ("C-c e" . ebib))
+
+;;; vertico
+
+(use-package vertico
+  :ensure t
+  :pin gnu
+  :custom
+  (vertico-cycle t)
+  :init
+  (vertico-mode))  ; Enable Vertico at startup
+
+;;; orderless
+
+(use-package orderless
+  :ensure t
+  :pin gnu
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))  ;; Correct wrapping of the list
+
+;;; marginalia
+
+(use-package marginalia
+  :ensure t
+  :pin gnu
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+
+  :init
+  (marginalia-mode))
+
+</pre>
+</div>
+
+
+<p>
+This block makes sure the following packages are installed and configured:
+</p>
+</div>
+
+<div id="outline-container-org5dc0576" class="outline-4">
+<h4 id="org5dc0576"><span class="section-number-4">1.1.1.</span> Ebib</h4>
+<div class="outline-text-4" id="text-1-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="org2b9639c"></a>What does this package do?<br />
+<div class="outline-text-5" id="text-1-1-1-1">
+<p>
+This is an Emacs-based bibliography manager for .bib files written by Joost Kremmers—who has written an extensive accompanying manual. It support both the <b>BibTeX</b> and <b>BibLaTeX</b> dialects, and is well integrated with <b>org-mode</b>.
+</p>
+</div>
+</li>
+
+<li><a id="orgf54b466"></a>Custom settings<br />
+<div class="outline-text-5" id="text-1-1-1-2">
+<p>
+The <i>setopt</i> function sets the following settings:
+</p>
+
+<ul class="org-ul">
+<li>preloads <i>PLACEHOLDER</i> as a bibliographic database</li>
+<li>sets the following file associations:
+<ul class="org-ul">
+<li>.pdf : <i>Evince</i></li>
+<li>.xopp : <i>Xournal++</i></li>
+</ul></li>
+<li>sets  <i>PLACEHOLDER</i> as the associated file directory</li>
+<li>sets the dialect to <b>BibLaTeX</b></li>
+<li>sets note storage to <i>one-file-per-note</i></li>
+<li>sets the note directory to <i>PLACEHOLDER</i></li>
+<li>sets the reading list file to <i>PLACEHOLDER</i></li>
+<li>sets a custom reading list template</li>
+<li>enables Ebib's <i>autogenerate-keys</i> function for both <b>BibTeX</b> and <b>BibLaTeX</b> entries</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org184f3b6" class="outline-4">
+<h4 id="org184f3b6"><span class="section-number-4">1.1.2.</span> Vertico</h4>
+<div class="outline-text-4" id="text-1-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="org47109ea"></a>What does this package do?<br />
+<div class="outline-text-5" id="text-1-1-2-1">
+<p>
+<b>Vertico,</b> or VERTical Interactive COmpletion, is a completion UI which replaces Emacs' builtin completion framework with a more minimalist design based on Emacs' built-in functions. <b>Vertico</b> is highly modular and can be extended with a variety of complementary packages such as <b>Orderless</b> and <b>Marginalia</b>.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org590e510" class="outline-4">
+<h4 id="org590e510"><span class="section-number-4">1.1.3.</span> Orderless</h4>
+<div class="outline-text-4" id="text-1-1-3">
+</div>
+<ol class="org-ol">
+<li><a id="org14a2056"></a>What does this package do?<br />
+<div class="outline-text-5" id="text-1-1-3-1">
+<p>
+<b>Orderless</b> is a completion style which matches search candidates based on fuzzy search of space-separated components
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org06b86e4" class="outline-4">
+<h4 id="org06b86e4"><span class="section-number-4">1.1.4.</span> Marginalia</h4>
+<div class="outline-text-4" id="text-1-1-4">
+</div>
+<ol class="org-ol">
+<li><a id="orgefd030a"></a>What does this package do?<br />
+<div class="outline-text-5" id="text-1-1-4-1">
+<p>
+<b>Marginalia</b> provides brief marks of annotations at the margin of the minibuffer for completion candidates in order to convey more information about files and functions.
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-orgd9719de" class="outline-3">
+<h3 id="orgd9719de"><span class="section-number-3">1.2.</span> GNUs</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(setq gnus-select-method '(nnnil ""))  ; to disable NNTP and use no server
+</pre>
+</div>
+
+<p>
+This block simply sets up GNUS to use no server: ideal for RSS. RSS can best be configured and filed within GNUs itself
+</p>
+</div>
+</div>
+
+<div id="outline-container-org92ac830" class="outline-3">
+<h3 id="org92ac830"><span class="section-number-3">1.3.</span> General Tweaks</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">;;; Startup 
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(which-function-mode 1)
+
+(setopt frame-title-format "🏺 %b - Λογικὴ Γραμματεύς %M 🏺")
+
+;;; Make background transparent
+
+;(set-frame-parameter nil 'alpha-background 70)
+
+;(add-to-list 'default-frame-alist '(alpha-background . 70))
+
+;;; Toggle fullscreen
+
+(defun toggle-fullscreen ()
+  "Toggle full screen and enable/disable battery display mode."
+  (interactive)
+  (set-frame-parameter
+   nil 'fullscreen
+   (when (not (frame-parameter nil 'fullscreen)) 'fullboth))) 
+(global-set-key (kbd "C-x &lt;up&gt;") 'toggle-fullscreen)
+
+
+;;; Set up recent file and placeholder functionality
+
+(recentf-mode 1)
+(setq recentf-max-menu-items 10)  ; Set the maximum number of items to remember
+(global-set-key (kbd "C-x ,") 'recentf-open-files)
+
+(save-place-mode 1)
+
+;;; Line spacing
+
+(setq-default line-spacing 2)
+
+;;; Make scrolling bearable
+
+(setq pixel-scroll-precision-mode t)
+
+;;; Make text nicer to read by adding margins
+
+(setq-default left-margin-width 5 right-margin-width 5) ; Define new widths.
+(global-visual-line-mode 1)
+
+</pre>
+</div>
+
+
+
+<p>
+This block does a number of things.
+</p>
+
+<ul class="org-ul">
+<li>It disables the:
+<ul class="org-ul">
+<li>menu-bar</li>
+<li>tool-bar</li>
+<li>scroll-bar</li>
+</ul></li>
+<li>Adds an optional transparent background (commented out for now)</li>
+<li>Sets up a toggleable fullscreen</li>
+<li>Enables <i>recentf</i> mode and binds it to <i>C-x ,</i></li>
+<li>Enables <i>save-place-mode</i></li>
+<li>Sets line spacing to 2</li>
+<li>Enables <i>pixel-scroll-precision-mode</i> for smoother scrolling</li>
+<li>Adds margins</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2e6a928" class="outline-3">
+<h3 id="org2e6a928"><span class="section-number-3">1.4.</span> Mode-line</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-orgf470e40" class="outline-4">
+<h4 id="orgf470e40"><span class="section-number-4">1.4.1.</span> Mode-line Format</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(setq-default mode-line-format
+              '("%e"
+
+
+                (:eval
+                 (let ((mode-line-string  ; Define the mode-line-string here
+                              (concat
+
+                               "💾: "
+                               my-mode-line-buffer-name
+                               " "
+                               my-mode-line-file-position
+                               " "
+                               my-mode-line-file-delta-status
+                               " | "   ; Separator between file position and lambda symbol       
+                               my-mode-line-lambda
+                               my-mode-line-mode
+                               (or (cdr (assoc major-mode my-major-mode-line-mode-indicators)) "")
+                               " | "
+                               (when which-function-mode
+                                 (let ((function (which-function)))
+                                   (if function
+                                       (concat function)
+                                     "")))
+                               (when (not which-function-mode)
+                                 "which-function mode is disabled 👎🏻 | ")
+                               )))
+
+                                       (let* ((window-width (window-width))
+                              (string-length (length mode-line-string))
+                              (total-padding (max 0 (- window-width string-length)))
+                              (left-padding (/ total-padding 2))  ; Integer division of total padding for left side
+                              (right-padding (- total-padding left-padding)))  ; The rest goes to the right
+
+                         (concat
+                          ;; Adjust the left padding slightly if there's an odd difference in padding
+                          (make-string left-padding ?\s)
+                          mode-line-string
+                          (make-string right-padding ?\s)))))))
+
+
+
+</pre>
+</div>
+
+<p>
+The block defines the mode-line format by calling the variable defined in the subsequent blocks. It then centres the mode-line.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org21cd078" class="outline-4">
+<h4 id="org21cd078"><span class="section-number-4">1.4.2.</span> Indicators</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(defvar my-mode-line-buffer-name (propertize "%b" 'face 'bold)
+  "The format for the buffer name in the mode-line.")
+
+(defvar my-mode-line-file-position (propertize "(%o)" 'face 'shadow)
+  "The format for the file position in the mode-line.")
+
+(defvar my-mode-line-file-delta-status (propertize "Δ: %&amp;" 'face 'shadow))
+
+(defvar my-mode-line-lambda (propertize "λ " 'face 'shadow)
+  "The format for the lambda symbol in the mode-line.")
+
+(defvar my-mode-line-mode (propertize "%m" 'face 'bold)
+  "The format for the major mode in the mode-line.")
+
+(defvar my-mode-line-global-string (propertize " %M" 'face 'bold)
+  "The format for the glboal status in the mode-line.")
+
+</pre>
+</div>
+
+
+<p>
+This block defines the basic variables to be used as indicators within the mode-line.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org68d4d4f" class="outline-4">
+<h4 id="org68d4d4f"><span class="section-number-4">1.4.3.</span> Major Mode Icons</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(defvar my-major-mode-line-mode-indicators
+  '((org-mode . " 📚")
+    (org-agenda-mode . " 🗓️")
+    (bibtex-mode . " 📜")
+    (lisp-mode . " 🍯")
+    (python-mode . " 🐍")
+    (java-mode . " ☕")
+    (perl-mode . " 🐫")
+    (c-mode . " 👴🏼")
+    (c++-mode . " 👴🏼"))
+  "A list of mode-specific indicators for the mode line.")
+
+</pre>
+</div>
+
+
+<p>
+This block defines a list of UTF emojis to be associated with various major mode
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaec715e" class="outline-3">
+<h3 id="orgaec715e"><span class="section-number-3">1.5.</span> Custom Splashscreen</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+        (defun center-text (text)
+          "Center TEXT within the entire Emacs window width."
+          (let* ((window-width (window-body-width))          ; Get the width of the window
+                 (ascii-width (apply 'max (mapcar 'length (split-string text "\n")))))  ; Max length of any line in the ASCII art
+            (if (&gt; window-width ascii-width)
+                (let ((padding (max 0 (/ (- window-width ascii-width) 2))))  ; Calculate padding
+                  (mapconcat (lambda (line)
+                               (concat (make-string padding ?\ ) line))  ; Add padding to each line
+                             (split-string text "\n" t)
+                             "\n"))
+              text)))  ; If the text is wider than the window, just return it unmodified
+
+        (defun my-ascii-art ()
+          "Insert custom ASCII art into the *scratch* buffer."
+          (interactive)
+          (let ((ascii-art "
+    _-`````-,            ,- '- .\n
+  .'   .- - |          | - -.  `.\n
+ /.'  /                     `.   \n
+:/   :      _...   ..._      ``   :\n
+::   :     /._ .`:'_.._\\.    ||   :\n
+::    `._ ./  ,`  :    \\ . _.''   .\n
+`:.      /   |  -.  \\-. \\\\_      /\n
+  \:._ _/  .'   .@)  \\@) ` `\\ ,.'\n
+     _/,--'       .- .\\,-.`--`.\n
+       ,'/''     (( \\ `  )    
+        /'/'  \\    `-'  (      
+         '/''  `._,-----'\n
+          ''/'    .,---'\n
+           ''/'      ;:\n
+             ''/''  ''/\n
+               ''/''/''\n
+                 '/'/'\n
+                  `;"))
+            (let ((welcome-message "\nWelcome to Harry's Emacs! Press any key to clear this scratch buffer. Credit for the art goes to Vijay Kumar Bagavath Singh &lt;3"))
+              (with-current-buffer "*scratch*"
+                (erase-buffer)
+                (insert (center-text ascii-art))  ; Centered ASCII art
+                (insert (center-text welcome-message))  ; Center the welcome message
+                (goto-char (point-min))))))
+
+        (add-hook 'emacs-startup-hook 'my-ascii-art)
+
+        ;; Automatically clear *scratch* buffer when you start typing
+        (defvar my-scratch-cleared nil "Flag to check if *scratch* has been cleared.")
+
+        (defun clear-scratch-buffer-on-input ()
+          "Clear the *scratch* buffer when you start typing."
+          (when (and (eq (current-buffer) (get-buffer "*scratch*"))
+                     (not my-scratch-cleared)
+                     (not (= (point) (point-min)))) ; Only clear if you are not at the beginning (start typing)
+            (erase-buffer)
+            (setq my-scratch-cleared t)))  ; Flag to prevent multiple clears
+
+        (add-hook 'post-command-hook 'clear-scratch-buffer-on-input)
+
+        ;; Keep Emacs looking as usual (do not disable UI elements)
+        (setq initial-buffer-choice t)
+
+</pre>
+</div>
+
+<p>
+Here the default scratch buffer is replaced with a splash screen featuring a tasteful ASCII art GNU—credited to Vijay Kumar Bagavath Singh—and a welcome message. Both the art and the message are set to clear upon user input.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgac64c6d" class="outline-3">
+<h3 id="orgac64c6d"><span class="section-number-3">1.6.</span> Org-mode</h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<div id="outline-container-orgd26dff4" class="outline-4">
+<h4 id="orgd26dff4"><span class="section-number-4">1.6.1.</span> Tweaks</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+
+(require 'org)  ; Ensures org-mode is loaded
+(require 'oc-csl)
+
+
+;;; Org specific files
+
+(setopt org-agenda-files '("PLACEHOLDER")
+
+
+;;; Org bibliographic and exporter settings
+
+(setq org-cite-global-bibliography '("PLACEHOLDER")) ; Set your .bib file here
+
+(setq org-cite-csl-styles-dir "PLACEHOLDER") ; Set the CSL styles directory (path to where your .csl files are located)
+
+(setq org-cite-csl-style "PLACEHOLDER") ; Set the CSL style to the specific Harvard style you downloaded
+
+(setq TeX-command-default "LaTeX")
+(setq TeX-clean-confirm nil)  ; Automatically clean without confirmation
+(setq TeX-clean-intermediate-files t)  ; Automatically delete intermediate files
+
+
+;;; Org editing and visual tweaks
+
+(setq-default org-toggle-pretty-entities t
+              modus-themes-org-blocks 'gray-background
+              org-support-shift-select t
+              org-hide-emphasis-markers t
+              org-startup-with-inline-images t
+              org-image-actual-width '(300)
+              ) 
+(setopt org-image-align 'centre)  ; Or 'left or 'right
+
+;;; Agenda settings	
+
+(global-set-key (kbd "C-c a") 'org-agenda) ; 'C-c -' Opens org-agenda
+(global-set-key (kbd "C-c t") (lambda ()           ; 'C-c 0' opens today's agenda
+                                (interactive)
+                                (org-agenda nil "a")))
+
+;;; Activate hl-line mode in Dired and Org Agenda only
+
+(add-hook 'dired-mode-hook 'hl-line-mode)
+(add-hook 'org-agenda-mode-hook 'hl-line-mode)
+
+
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))) ; Use only bullet point symbols for lists
+
+
+;;; Spell checking
+
+(defun my/org-setup-flyspell-and-dictionary ()
+  "Enable flyspell and set dictionary to British English in org-mode."
+  (flyspell-mode 1)
+  (setq ispell-dictionary "british"))
+
+(add-hook 'org-mode-hook 'my/org-setup-flyspell-and-dictionary)
+
+;;; Ensure soft wrapping in org-mode
+
+(add-hook 'org-mode-hook (lambda () 
+                           (auto-fill-mode -1)  ; Disable auto-fill
+                           (setq fill-column most-positive-fixnum)  ; Disable hard wrapping
+                           (visual-line-mode 1)))  ; Enable soft wrapping
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org21e8ad3" class="outline-4">
+<h4 id="org21e8ad3"><span class="section-number-4">1.6.2.</span> Capture Templates</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(global-set-key (kbd "C-c 9") 'org-capture) ; 'C-c 0' Opens org-capture
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "PLACEHOLDER" "Tasks")
+         "* TODO %?\n  %i\nCreated: %T")))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga4dc0d9" class="outline-4">
+<h4 id="orga4dc0d9"><span class="section-number-4">1.6.3.</span> Macros</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(defun insert-essay-plan-table ()
+  "Inserts a 6x2 table for an essay plan with columns 'Idea' and 'Source', including the separator and rows."
+  (interactive)
+  (insert "| Idea | Source(s) (If applicable) |\n")  ; Insert the header row
+  (insert "|------+---------------------------|\n")  ; Insert the separator row
+  (dotimes (_ 4)  ; Create 4 additional empty rows (for a total of 6 rows)
+    (insert "|      |                        |\n"))
+  (org-table-align))  ; Align the table
+
+
+(global-set-key (kbd "C-c o e") 'insert-essay-plan-table)
+
+
+(defun insert-elisp-config-block()
+  "Inserts an Org source block with 'emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts parameters'"
+  (interactive)
+  (insert "#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts\n#+END_SRC"))
+
+(defun insert-lisp-block()
+  "Inserts an Org source block with 'lisp'"
+  (interactive)
+  (insert "#+BEGIN_SRC lisp\n#+END_SRC"))
+
+
+</pre>
+</div>
+</div>
+
+
+<ol class="org-ol">
+<li><a id="orge99a5da"></a>Macro Table<br />
+<div class="outline-text-5" id="text-1-6-3-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Name</th>
+<th scope="col" class="org-left">Function</th>
+<th scope="col" class="org-left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">insert-essay-plan-table</td>
+<td class="org-left">"Inserts a 6x2 table for an essay plan with columns 'Idea' and 'Source', including the separator and rows."</td>
+<td class="org-left">C-c o e</td>
+</tr>
+
+<tr>
+<td class="org-left">insert-elisp-config-block</td>
+<td class="org-left">"Inserts an Org source block with 'emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts parameters"</td>
+<td class="org-left">N/A</td>
+</tr>
+
+<tr>
+<td class="org-left">insert-lisp-block</td>
+<td class="org-left">"Inserts an Org source block with 'lisp'"</td>
+<td class="org-left">N/A</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-orgd3d1cef" class="outline-4">
+<h4 id="orgd3d1cef"><span class="section-number-4">1.6.4.</span> Org Babel Settings</h4>
+<div class="outline-text-4" id="text-1-6-4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(org-babel-do-load-languages
+ 'org-beabel-load-languages
+ '((lisp . t)
+   (gnuplot . t)))
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4600d1d" class="outline-3">
+<h3 id="org4600d1d"><span class="section-number-3">1.7.</span> Font settings</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(set-face-attribute 'default nil :family "Dejavu Sans Mono" :height 108 :weight 'normal) ; Main typeface (for regular text)
+(set-face-attribute 'variable-pitch nil :family "Dejavu Sans" :height 1.18 :weight 'normal) ; Proportionately spaced typeface (for non-monospaced text)
+(set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 100 :weight 'normal) ; Monospaced typeface (for fixed-pitch text, like code blocks)
+(set-face-attribute 'fixed-pitch-serif nil :family "DejaVu Sans Mono" :height 100 :weight 'normal)
+
+(add-hook 'org-mode-hook #'variable-pitch-mode)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org26492db" class="outline-3">
+<h3 id="org26492db"><span class="section-number-3">1.8.</span> Modus Theme tweaks</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+;;; Simple Modus tweaks
+
+(setq modus-themes-fringes nil) ; Make fringes transparent
+(bind-key "&lt;f5&gt;" 'modus-themes-toggle) ; Day and Night mode for Emacs
+(setq modus-themes-mode-line '(accented borderless))
+(setopt modus-themes-mixed-fonts t)
+
+;;; Headings for Org
+
+(setq modus-themes-headings
+      '((1 . (height 1.4))
+        (2 . (height 1.3))
+        (3. (height 1.2))
+        (4. (height 1.1))
+        (t . (height 1))))
+
+;;; Load Modus
+
+(load-theme 'modus-operandi t)
+
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org7be8150" class="outline-3">
+<h3 id="org7be8150"><span class="section-number-3">1.9.</span> Dired settings</h3>
+<div class="outline-text-3" id="text-1-9">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+;; Hide file ownership/permissions by default
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+
+;; Hide dotfiles 
+(setq dired-listing-switches "-l")  ;; Use -l only, excluding -a
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: LizardDude22</p>
+<p class="date">Created: 2025-02-19 Wed 16:49</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

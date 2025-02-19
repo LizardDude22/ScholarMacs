@@ -6,12 +6,14 @@
   :ensure t
   :config
   (setopt 
-   ebib-preload-bib-files '("PLACEHOLDER")
+   ebib-preload-bib-files '("~/Documents/Bibliography/my.bib")
    ebib-file-associations 
-   '(("pdf" . "evince") ;; Or your desired PDF viewer
+   '(("pdf" . "evince")
      ("xopp" . "xournalpp"))
    ebib-file-search-dirs '("PLACEHOLDER")
    ebib-bibtex-dialect 'biblatex)
+   ebib-notes-storage 'multiple-notes-per-file
+   ebib-notes-locations	'("PLACEHOLDER")
   :bind
   (("C-c e" . ebib)))
 
@@ -277,11 +279,13 @@
 
 
 ;;; Fonts 
- 
-(set-face-attribute 'default nil :family "Iosevka" :height 120) ; Main typeface (for regular text)
-(set-face-attribute 'variable-pitch nil :family "Open Sans" :height 120) ;Proportionately spaced typeface (for non-monospaced text)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka" :height 100) ; Monospaced typeface (for fixed-pitch text, like code blocks)
-(set-face-attribute 'fixed-pitch-serif nil :family "Iosevka" :height 100)
+
+
+(set-face-attribute 'default nil :family "Dejavu Sans Mono" :height 120 :weight 'normal) ; Main typeface (for regular text)
+(set-face-attribute 'variable-pitch nil :family "Open Sans" :height 120 :weight 'normal) ;Proportionately spaced typeface (for non-monospaced text)
+(set-face-attribute 'fixed-pitch nil :family "Dejavu Sans Mono" :height 100 :weight 'normal) ; Monospaced typeface (for fixed-pitch text, like code blocks)
+(set-face-attribute 'fixed-pitch-serif nil :family "Dejavu Sans Mono" :height 100 :weight 'normal)
+
 
 (add-hook 'org-mode-hook #'variable-pitch-mode)
 (setopt modus-themes-mixed-fonts t)
