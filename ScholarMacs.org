@@ -128,7 +128,7 @@ This block simply sets up GNUS to use no server: ideal for RSS. RSS can best be 
   (scroll-bar-mode -1)
   (which-function-mode 1)
 
-  (setopt frame-title-format "🏺 %b - Λογικὴ Γραμματεύς %M 🏺")
+  (setopt frame-title-format "🏺 %b - ScholarMacs %M 🏺")
 
   ;;; Make background transparent
 
