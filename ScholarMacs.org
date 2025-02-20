@@ -55,15 +55,15 @@ Welcome to my Emacs config. This is literate config written in Org-mode using so
   ;;; marginalia
 
   (use-package marginalia
+    :after vertico
     :ensure t
     :pin gnu
     :custom
     (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-
     :init
     (marginalia-mode))
 
-        ;;; embark
+	;;; embark
 
   (use-package embark
     :ensure t
@@ -195,6 +195,7 @@ Welcome to my Emacs config. This is literate config written in Org-mode using so
 #+END_SRC 
 
 #+RESULTS:
+: consult-history
 
 
 This block makes sure the following packages are installed and configured:
