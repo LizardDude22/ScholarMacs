@@ -46,6 +46,7 @@ Welcome to my Emacs config. This is literate config written in Org-mode using so
   ;;; orderless
 
   (use-package orderless
+    :after vertico
     :ensure t
     :pin gnu
     :custom
@@ -66,6 +67,7 @@ Welcome to my Emacs config. This is literate config written in Org-mode using so
 	;;; embark
 
   (use-package embark
+    :after vertcio
     :ensure t
     :pin gnu
 
@@ -83,11 +85,13 @@ Welcome to my Emacs config. This is literate config written in Org-mode using so
 		   (window-parameters (mode-line-format . none)))))
 
   (use-package embark-consult
+    :after vertcio
     :ensure t
     :pin gnu)
 
   ;; Example configuration for Consult
   (use-package consult
+    :after vertcio
     :ensure t
     :pin gnu
     ;; Replace bindings. Lazily loaded by `use-package'.
