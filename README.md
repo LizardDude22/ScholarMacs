@@ -1,6 +1,6 @@
 # ScholarMacs
 
-## LizardDude's Emacs config for humanities students and academics! 
+## TheThoughtfulOx's Emacs config for humanities students and academics! 
 ![Philosophical GNU](https://www.gnu.org/graphics/philosophical-gnu-sm.jpg)
 
 Copyright © 1997 Markus Gerwinski
