@@ -450,7 +450,9 @@ This block defines the basic variables to be used as indicators within the mode-
       (java-mode . " ☕")
       (perl-mode . " 🐫")
       (c-mode . " 👴🏼")
-      (c++-mode . " 👴🏼"))
+      (c++-mode . " 👴🏼")
+      (eww-mode . " 🧭"))
+
     "A list of mode-specific indicators for the mode line.")
 
   #+END_SRC
