@@ -601,6 +601,16 @@ Here the default scratch buffer is replaced with a splash screen featuring a tas
 
 #+END_SRC
 
+**** Org Habit
+
+#+BEGIN_SRC emacs-lisp :name config-agenda-habits
+
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+
+#+END_SRC
+ 
+
 *** Capture Templates
 
 #+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts
