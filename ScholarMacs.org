@@ -613,7 +613,7 @@ Here the default scratch buffer is replaced with a splash screen featuring a tas
 
 *** Capture Templates
 
-#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-fonts
+#+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-capture-templates
 
   (global-set-key (kbd "C-c 9") 'org-capture) ; 'C-c 0' Opens org-capture
 
