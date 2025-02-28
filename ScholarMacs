@@ -309,7 +309,9 @@
     (java-mode . " ☕")
     (perl-mode . " 🐫")
     (c-mode . " 👴🏼")
-    (c++-mode . " 👴🏼"))
+    (c++-mode . " 👴🏼")
+    (eww-mode . " 🧭"))
+
   "A list of mode-specific indicators for the mode line.")
 
 (defun center-text (text)
