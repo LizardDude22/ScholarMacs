@@ -250,16 +250,26 @@ The /setopt/ function sets the following settings:
 
 For the time being I have used the maintainer's recommendations.
 
-**** What does this package do?
-
-For the time being I have used the maintainer's recommendations
-
 *** Consult
 
 **** What does this package do?
 
 *Consult* adds a rich set of search and navigation commands which allow for easy buffer previews, both inter and intra-file navigation, among many other features. 
 
+**** Custom Settings
+
+For the time being I have used the maintainer's recommendations.
+
+
+*** Org-modern
+
+**** What does this package do?
+
+*Org-modern* adjusts Org's various elements (heading markers, agenda faces and the tables) in order to make them appear more modern and visually appealing.
+
+**** Custom Settings
+
+For the time being I have used the maintainer's recommendations.
 
 ** GNUs
 
