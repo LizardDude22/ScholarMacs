@@ -198,10 +198,6 @@ Welcome to my Emacs config. This is literate config written in Org-mode using so
 
 #+END_SRC 
 
-#+RESULTS:
-: consult-history
-
-
 This block makes sure the following packages are installed and configured:
 
 *** Ebib
@@ -460,7 +456,6 @@ This block defines the basic variables to be used as indicators within the mode-
 
 This block defines a list of UTF emojis to be associated with various major mode
 
-
 ** Header line
 
 #+BEGIN_SRC emacs-lisp :name config-header-line
@@ -706,9 +701,6 @@ Here the default scratch buffer is replaced with a splash screen featuring a tas
        (gnuplot . t)))
 
 #+END_SRC
-
-#+RESULTS:
-
 
 ** Font settings
 
