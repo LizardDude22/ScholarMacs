@@ -460,6 +460,36 @@ This block defines the basic variables to be used as indicators within the mode-
 
 This block defines a list of UTF emojis to be associated with various major mode
 
+
+** Header line
+
+#+BEGIN_SRC emacs-lisp :name config-header-line
+
+  (defvar header-line-mode nil
+    "Non-nil if header-line mode is enabled.")
+
+  (defun header-line-toggle-function ()
+    "Toggles the header line."
+    (if header-line-mode  ;; Change to `header-line-mode`
+	(progn
+	  (setq header-line-mode nil)  ;; Change to `header-line-mode`
+	  (setq header-line-format nil)
+	  (message "Header line format turned off."))
+      (progn
+	(setq header-line-mode t)  ;; Change to `header-line-mode`
+	(setq header-line-format '(:eval "%f"))
+	(message "Header line format turned on."))))
+
+  (define-minor-mode toggle-header-line
+    "A minor mode to toggle the header line's visibility."
+    :lighter " HeaderLine"
+    :global t
+    (header-line-toggle-function))  ;; Call the correct function name
+
+#+END_SRC
+
+This block adds a header line which displays the current file path. It can be enabled and disabled with 'M-x toggle-header-line'
+
 ** Custom Splashscreen
 
 #+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-splashscreen
