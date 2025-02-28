@@ -1,5 +1,5 @@
 #+TITLE: ScholarMacs
-#+AUTHOR: LizardDude22
+#+AUTHOR: thethoughtfulox
 #+LANGUAGE: en 
 #+PROPERTY: headger-args :tangle
 
