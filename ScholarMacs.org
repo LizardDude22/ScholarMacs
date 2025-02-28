@@ -195,6 +195,11 @@ Welcome to my Emacs config. This is literate config written in Org-mode using so
     ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
     )
 
+  (use-package org-modern
+    :ensure t
+    :pin gnu
+    :config
+    (setopt org-modern-star 'replace))
 
 #+END_SRC 
 
@@ -269,7 +274,7 @@ For the time being I have used the maintainer's recommendations.
 
 **** Custom Settings
 
-For the time being I have used the maintainer's recommendations.
+For the time being the settings are default except for the heading icons which are set to stars, rather than folding indicators 
 
 ** GNUs
 
