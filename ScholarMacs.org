@@ -524,6 +524,9 @@ This block defines a list of UTF emojis to be associated with various major mode
     :global t
     (header-line-toggle-function))  ;; Call the correct function name
 
+    ;; Bind `M-g h` to toggle the header line
+  (global-set-key (kbd "M-g h") 'toggle-header-line)
+
 #+END_SRC
 
 This block adds a header line which displays the current file path. It can be enabled and disabled with 'M-x toggle-header-line'
