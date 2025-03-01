@@ -348,8 +348,6 @@ This block simply sets up GNUS to use no server: ideal for RSS. RSS can best be 
 
 #+END_SRC
 
-
-
 This block does a number of things.
 
 - It disables the:
@@ -375,10 +373,34 @@ This block does a number of things.
 - Enables spell-checking in the built-in commit message editor
 - Sets C-< as redo
 
+*** Frame Transparency
+
+#+BEGIN_SRC emacs-lisp :name config-frame-transparency
+
+  (defvar frame-transparency 86 "Transparency value for the frame when toggled.")
+
+  (defun toggle-frame-transparency ()
+    "Toggle frame transparency between transparent and opaque."
+    (interactive)
+    (if (eq (frame-parameter nil 'alpha-background) frame-transparency)
+	(progn
+	  (set-frame-parameter nil 'alpha-background 100) ; Opaque
+	  (message "Frame is now opaque."))
+      (progn
+	(set-frame-parameter nil 'alpha-background frame-transparency) ; Transparent
+	(message "Frame is now transparent."))))
+
+  ;; Set the default frame to be opaque
+  (set-frame-parameter nil 'alpha-background 100)
+  (add-to-list 'default-frame-alist '(alpha-background . 100))
+
+#+END_SRC
+
+This block adds a setting which makes the frame transparent
+
 ** Mode-line
 
 *** Mode-line Format
-
 
 #+BEGIN_SRC emacs-lisp :tangle ~/ScholarMacs/ScholarMacs :name config-mode-line-format
 
