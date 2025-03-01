@@ -182,66 +182,71 @@
   ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
   )
 
+(use-package org-modern
+  :ensure t
+  :pin gnu
+  :config
+  (setopt org-modern-star 'replace))
+
 (setq gnus-select-method '(nnnil ""))  ; to disable NNTP and use no server
 
-;;; Startup 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(which-function-mode 1)
+(setopt
+ menu-bar-mode nil
+ tool-bar-mode nil
+ scroll-bar-mode nil
+ which-function-mode t
+ auto-fill-mode t
+ delete-by-moving-to-trash t                      ; Delete files to trash
+ window-combination-resize t                      ; Take new window space from all other windows (not just current)
+ cursor-type 'bar	   			  ; Sets cursor to the more conventional, narrow line type
+ subword-mode t					  ; Navigate camelcase words properly
+ sentence-end-double-space nil                    ; Make Emacs view sentences as a series of words prior to a fullstop and a single space, rather than a double space
+ doc-view-continuous t                       ; The document viewer shows content continuously, so you don’t have to flip between pages.
+ frame-title-format "🏺 %b - ScholarMacs %M 🏺" ; Sets the frame title
+ recentf-max-menu-items 10  ; Set the maximum number of items to remember
+ line-spacing 2
+ pixel-scroll-precision-mode t ; Make scrolling bearable
+ history-length 25
+ savehist-mode t
+ global-auto-revert-mode t
+ shr-inhibit-images t ; Disable images in eww
+ )
 
-(setopt frame-title-format "🏺 %b - ScholarMacs %M 🏺")
-
-;;; Make background transparent
-
-					;(set-frame-parameter nil 'alpha-background 70)
-
-					;(add-to-list 'default-frame-alist '(alpha-background . 70))
-
-;;; Toggle fullscreen
+		    ;;; Toggle fullscreen
 
 (defun toggle-fullscreen ()
   "Toggle full screen and enable/disable battery display mode."
   (interactive)
   (set-frame-parameter
    nil 'fullscreen
-   (when (not (frame-parameter nil 'fullscreen)) 'fullboth))) 
+   (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+
 (global-set-key (kbd "C-x <up>") 'toggle-fullscreen)
 
-
 ;;; Set up recent file and placeholder functionality
-
-(recentf-mode 1)
-(setq recentf-max-menu-items 10)  ; Set the maximum number of items to remember
+(setopt recentf-mode t)
 (global-set-key (kbd "C-x ,") 'recentf-open-files)
-
 (save-place-mode 1)
 
-;;; Line spacing
-
-(setq-default line-spacing 2)
-
-;;; Make scrolling bearable
-
-(setq pixel-scroll-precision-mode t)
-
-;;; Make text nicer to read by adding margins
+		   ;;; Make text nicer to read by adding margins
 
 (setq-default left-margin-width 5 right-margin-width 5) ; Define new widths.
 (global-visual-line-mode 1)
 
- ;;; Enable savehist-mode
+		   ;;; Activate hl-line mode in Dired and Org Agenda only
 
-(setq history-length 25)
-(savehist-mode 1)
+(add-hook 'dired-mode-hook 'hl-line-mode)
+(add-hook 'org-agenda-mode-hook 'hl-line-mode)
 
- ;;; Enable global-auto-revert-mode
 
-(global-auto-revert-mode 1)
+		   ;;; Enable spell-checking in Emacs' built-in commit message editor
 
- ;;; Disable images in eww
+(add-hook 'vc-git-log-edit-mode-hook 'flyspell-mode)
 
-(setq shr-inhibit-images t)
+
+		   ;;; Set a keybind for redo
+
+(global-set-key (kbd "C-<") #'undo-redo)
 
 (setq-default mode-line-format
 	      '("%e"
